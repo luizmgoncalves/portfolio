@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luiz Miguel dos Santos Gonçalves</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        #navbar{
+            display: flex;
+            width: 100%;
+            background-color: rgb(230, 230, 230);
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        #navbar span{
+            padding: 7px 40px;
+            border-radius: 2px;
+            box-sizing: border-box;
+            background-color: rgb(162, 162, 162);
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+
+        #navbar span#nav_bar_collapse{
+            margin-top: 0px;
+            width: fit-content;
+        }
+
+        #navbar span:hover{
+            background-color: rgb(137, 137, 137);
+        }
+        
+
+        #navbar.row{
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+        #navbar.row span{
+            margin-left: 20px;
+            width: fit-content;
+        }
+
+        #navbar.row span:first-of-type{
+            margin-left: 0px;
+        }
+
+        #navbar.row span#nav_bar_collapse{
+            display: none;
+        }
+        
+
+        #navbar.col{
+            flex-direction: column;
+            align-items: flex-end;
+            
+        }
+        #navbar.col span{
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        #navbar.col span:first-of-type{
+            margin-top: 0px;
+        }
+
+        #navbar.col span#nav_bar_collapse{
+            display: block;
+        }
+
+        #title_container {
+            background-color: white;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            width: fit-content;
+            padding: 20px 20px 5px 20px;
+        }
+
+        #title_container hr {
+            width: 100%;
+            min-width: 40vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar" class="row">
+    </div>
+    <div id="title_container">
+        <h1 id="title">Portfólio</h1>
+        <h3>Luiz Miguel dos Santos Gonçalves</h3>
+        <hr>
+    </div>
+    <div id="content">
+        <h3>Principais conhecimentos: </h3>
+        <ul>
+            <li>
+                <p>Liguagem Python</p>
+            </li>
+            <li>
+                <p>Liguagem C</p>
+            </li>
+            <li>
+                <p>Javascript</p>
+            </li>
+            <li>
+                <p>Liguagem Go</p>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var nav_bar = document.getElementById("navbar")
+
+        window.addEventListener('resize', function(){
+            nav_bar.classList.remove('col')
+            nav_bar.classList.add("row")
+            hide_all(false)
+            if(nav_bar.offsetHeight > 60){
+                nav_bar.classList.remove('row')
+                nav_bar.classList.add("col")
+                hide_all(true)
+                
+            }
+            
+        })
+
+        function hide_all(hide){
+            let texts = nav_bar.children
+                for (let i=0; i<texts.length; i++){
+                    if (texts[i].id == 'nav_bar_collapse'){
+                        continue;
+                    }
+                    if(hide){
+                        texts[i].style.display = "none";
+                    }
+                    else{
+                        texts[i].style.display = "block";
+                    }
+                }
+        }
+        for(i=0;i<5; i++){
+            let new_s = document.createElement('span')
+            new_s.innerText = `Texto ${i}`
+            nav_bar.appendChild(new_s)
+        }
+
+        var collapse = document.createElement('span')
+        collapse.innerText = `Collapse`
+        collapse.id = "nav_bar_collapse"
+        collapse.setAttribute('state', false)
+        collapse.addEventListener('click', ()=>{
+            hide_all(collapse.getAttribute('state')=='true'?true:false)
+            collapse.setAttribute('state', collapse.getAttribute('state')=='true'?false:true)
+            if(collapse.getAttribute('state')=='true'?true:false)
+                collapse.style.marginTop = '20px';
+            else
+            collapse.style.marginTop = '0px';
+        })
+        nav_bar.appendChild(collapse)
+    </script>
+</body>
+
+</html>
