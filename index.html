@@ -118,7 +118,7 @@
     <script>
         var nav_bar = document.getElementById("navbar")
 
-        window.addEventListener('resize', function(){
+        function resize_nav_bar(){
             nav_bar.classList.remove('col')
             nav_bar.classList.add("row")
             hide_all(false)
@@ -126,8 +126,11 @@
                 nav_bar.classList.remove('row')
                 nav_bar.classList.add("col")
                 hide_all(true)
-                
-            }
+            } 
+        }
+
+        window.addEventListener('resize', function(){
+            resize_nav_bar()
             
         })
 
@@ -164,6 +167,9 @@
             collapse.style.marginTop = '0px';
         })
         nav_bar.appendChild(collapse)
+
+
+        resize_nav_bar()
     </script>
 </body>
 
