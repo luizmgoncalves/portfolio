@@ -12,6 +12,7 @@
         }
         #navbar{
             display: flex;
+            flex-wrap: wrap;
             width: 100%;
             background-color: rgb(230, 230, 230);
             box-sizing: border-box;
@@ -20,10 +21,12 @@
         #navbar span{
             padding: 7px 40px;
             border-radius: 2px;
+            width: 100%;
             box-sizing: border-box;
             background-color: rgb(162, 162, 162);
             transition: background-color 0.2s;
             cursor: pointer;
+            text-align: center;
         }
 
         #navbar span#nav_bar_collapse{
@@ -37,13 +40,12 @@
         
 
         #navbar.row{
-            flex-wrap: wrap;
             flex-direction: row;
             align-items: flex-start;
         }
         #navbar.row span{
             margin-left: 20px;
-            width: fit-content;
+            max-width: fit-content;
         }
 
         #navbar.row span:first-of-type{
@@ -62,15 +64,31 @@
         }
         #navbar.col span{
             margin-top: 20px;
-            width: 100%;
+            max-width: 100%;
+            transform: scaleY(1);
+            max-height: max-content;
+            transition-property: transform , max-height , padding , margin;
+            transition-duration: 1s;
         }
 
         #navbar.col span:first-of-type{
             margin-top: 0px;
         }
 
+        #navbar.col span.hide{
+            transform: scaleY(0);
+            color: rgba(0, 0, 0, 0);
+            margin: 0px;
+            padding: 0px;
+            max-height: 0px;
+        }
+
         #navbar.col span#nav_bar_collapse{
             display: block;
+        }
+
+        #navbar.col span#nav_bar_collapse.active{
+            margin-top : 20px;
         }
 
         #title_container {
@@ -115,36 +133,74 @@
             </li>
         </ul>
     </div>
+    <div id="hide_trash"></div>
     <script>
         var nav_bar = document.getElementById("navbar")
+        var nav_bar_state = 'row'
 
         function resize_nav_bar(){
             nav_bar.classList.remove('col')
             nav_bar.classList.add("row")
-            hide_all(false)
+            
             if(nav_bar.offsetHeight > 60){
+                
                 nav_bar.classList.remove('row')
                 nav_bar.classList.add("col")
-                hide_all(true)
+                
+                let texts = nav_bar.children
+                for (let i=0; i<texts.length; i++){
+                    if (texts[i].id == 'nav_bar_collapse'){
+                        continue;
+                    }
+                    texts[i].style.transitionDuration = "0s"
+                    
+                }
+
+                setTimeout(()=>{
+                    let texts = nav_bar.children
+                    for (let i=0; i<texts.length; i++){
+                        if (texts[i].id == 'nav_bar_collapse'){
+                            continue;
+                        }
+                        texts[i].style.transitionDuration = "1s"
+                    }
+                }, 10)
+
+                if(nav_bar_state==='row'){
+                    hide_all(true)
+                }
+                
+                nav_bar_state = 'col'
+                
+                return
             } 
+            if(nav_bar_state==='col'){
+                hide_all(false)
+            }
+            
+            nav_bar_state = 'row'
+            
         }
 
         window.addEventListener('resize', function(){
+            
             resize_nav_bar()
+            
             
         })
 
         function hide_all(hide){
             let texts = nav_bar.children
+            if(texts[0].classList.contains("hide") && hide) return;
                 for (let i=0; i<texts.length; i++){
                     if (texts[i].id == 'nav_bar_collapse'){
                         continue;
                     }
                     if(hide){
-                        texts[i].style.display = "none";
+                        texts[i].classList.add("hide")
                     }
                     else{
-                        texts[i].style.display = "block";
+                        texts[i].classList.remove("hide")
                     }
                 }
         }
@@ -157,14 +213,13 @@
         var collapse = document.createElement('span')
         collapse.innerText = `Collapse`
         collapse.id = "nav_bar_collapse"
-        collapse.setAttribute('state', false)
         collapse.addEventListener('click', ()=>{
-            hide_all(collapse.getAttribute('state')=='true'?true:false)
-            collapse.setAttribute('state', collapse.getAttribute('state')=='true'?false:true)
-            if(collapse.getAttribute('state')=='true'?true:false)
-                collapse.style.marginTop = '20px';
-            else
-            collapse.style.marginTop = '0px';
+            hide_all(collapse.classList.contains('active'))
+            if(collapse.classList.contains('active')){
+                collapse.classList.remove('active')
+                return
+            }
+            collapse.classList.add('active')
         })
         nav_bar.appendChild(collapse)
 
