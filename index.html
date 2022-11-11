@@ -21,11 +21,11 @@
         #navbar span{
             padding: 7px 40px;
             border-radius: 2px;
-            width: 100%;
+            width: fit-content;
             box-sizing: border-box;
-            background-color: rgb(162, 162, 162);
-            transition: background-color 0.2s;
+            transition: color 0.2s;
             cursor: pointer;
+            height: 50px;
             text-align: center;
         }
 
@@ -35,17 +35,19 @@
         }
 
         #navbar span:hover{
-            background-color: rgb(137, 137, 137);
+            color: rgb(110, 110, 110);
         }
-        
+
+        #navbar.max{
+            width: max-content;
+        }
 
         #navbar.row{
             flex-direction: row;
-            align-items: flex-start;
         }
         #navbar.row span{
             margin-left: 20px;
-            max-width: fit-content;
+            width: fit-content;
         }
 
         #navbar.row span:first-of-type{
@@ -63,11 +65,11 @@
             
         }
         #navbar.col span{
-            margin-top: 20px;
-            max-width: 100%;
+            margin: 20px 0px 0px 0px;
+            width: 100%;
             transform: scaleY(1);
-            max-height: max-content;
-            transition-property: transform , max-height , padding , margin;
+            height: max-content;
+            transition-property: transform , height , padding , margin;
             transition-duration: 1s;
         }
 
@@ -77,14 +79,15 @@
 
         #navbar.col span.hide{
             transform: scaleY(0);
-            color: rgba(0, 0, 0, 0);
+            /*color: rgba(0, 0, 0, 0);*/
             margin: 0px;
             padding: 0px;
-            max-height: 0px;
+            height: 0px;
         }
 
         #navbar.col span#nav_bar_collapse{
             display: block;
+            width: fit-content;
         }
 
         #navbar.col span#nav_bar_collapse.active{
@@ -109,7 +112,7 @@
 </head>
 
 <body>
-    <div id="navbar" class="row">
+    <div id="navbar">
     </div>
     <div id="title_container">
         <h1 id="title">Portfólio</h1>
@@ -141,8 +144,8 @@
         function resize_nav_bar(){
             nav_bar.classList.remove('col')
             nav_bar.classList.add("row")
-            
-            if(nav_bar.offsetHeight > 60){
+        
+            if(nav_bar.offsetHeight > max_height){
                 
                 nav_bar.classList.remove('row')
                 nav_bar.classList.add("col")
@@ -224,6 +227,13 @@
         })
         nav_bar.appendChild(collapse)
 
+        nav_bar.classList.add("max")
+        nav_bar.classList.add("row")
+
+        var max_height = nav_bar.offsetHeight + 1 
+        console.log(max_height)
+
+        nav_bar.classList.remove("max")
 
         resize_nav_bar()
     </script>
