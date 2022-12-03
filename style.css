@@ -1,0 +1,137 @@
+body {
+    margin: 0px;
+}
+
+#navbar {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: rgb(230, 230, 230);
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+#navbar span {
+    padding: 7px 40px;
+    border-radius: 2px;
+    width: fit-content;
+    box-sizing: border-box;
+    transition: color 0.2s;
+    cursor: pointer;
+    text-align: center;
+}
+
+#navbar span#nav_bar_collapse {
+    margin-top: 0px;
+    width: fit-content;
+}
+
+#navbar span:hover {
+    color: rgb(110, 110, 110);
+}
+
+#navbar.max {
+    width: max-content;
+}
+
+#navbar.row {
+    flex-direction: row;
+}
+
+#navbar.row span {
+    margin-left: 20px;
+    width: fit-content;
+}
+
+#navbar.row span:first-of-type {
+    margin-left: 0px;
+}
+
+#navbar.row span#nav_bar_collapse {
+    display: none;
+}
+
+
+#navbar.col {
+    flex-direction: column;
+    align-items: flex-end;
+
+}
+
+#navbar.col span {
+    margin: 20px 0px 0px 0px;
+    width: 100%;
+    transform: scaleY(1);
+    height: max-content;
+    transition-property: transform, height, padding, margin;
+    transition-duration: 1s;
+}
+
+#navbar.col span:first-of-type {
+    margin-top: 0px;
+}
+
+#navbar.col span.hide {
+    transform: scaleY(0);
+    /*color: rgba(0, 0, 0, 0);*/
+    margin: 0px;
+    padding: 0px;
+    height: 0px;
+}
+
+#navbar.col span#nav_bar_collapse {
+    display: block;
+    width: fit-content;
+}
+
+#navbar.col span#nav_bar_collapse.active {
+    margin-top: 20px;
+}
+
+#title_container {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding: 20px 0px 5px 0px;
+}
+
+#title_container h1 {
+    font-family:'Copperplate Gothic Light';
+    font-size:xx-large;
+}
+
+#title_container h3 {
+    font-family:'papyrus';
+}
+
+
+#content{
+    padding-top: 30px;
+    padding-inline: max(10px, 20vw);
+}
+
+#foto{
+    max-width:400px;
+    width: 100%;
+    margin: auto;
+    border-style: solid;
+}
+
+#image_container{
+    text-align: center;
+    display: flex;
+    max-width:800px;
+    margin: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#image_container h3{
+    margin:auto;
+    min-width: max-content;
+    padding: 20px;
+}

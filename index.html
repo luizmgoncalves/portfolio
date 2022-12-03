@@ -6,120 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luiz Miguel dos Santos Gonçalves</title>
-    <style>
-        body{
-            margin: 0px;
-        }
-        #navbar{
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-            background-color: rgb(230, 230, 230);
-            box-sizing: border-box;
-            padding: 10px;
-        }
-        #navbar span{
-            padding: 7px 40px;
-            border-radius: 2px;
-            width: fit-content;
-            box-sizing: border-box;
-            transition: color 0.2s;
-            cursor: pointer;
-            height: 50px;
-            text-align: center;
-        }
-
-        #navbar span#nav_bar_collapse{
-            margin-top: 0px;
-            width: fit-content;
-        }
-
-        #navbar span:hover{
-            color: rgb(110, 110, 110);
-        }
-
-        #navbar.max{
-            width: max-content;
-        }
-
-        #navbar.row{
-            flex-direction: row;
-        }
-        #navbar.row span{
-            margin-left: 20px;
-            width: fit-content;
-        }
-
-        #navbar.row span:first-of-type{
-            margin-left: 0px;
-        }
-
-        #navbar.row span#nav_bar_collapse{
-            display: none;
-        }
-        
-
-        #navbar.col{
-            flex-direction: column;
-            align-items: flex-end;
-            
-        }
-        #navbar.col span{
-            margin: 20px 0px 0px 0px;
-            width: 100%;
-            transform: scaleY(1);
-            height: max-content;
-            transition-property: transform , height , padding , margin;
-            transition-duration: 1s;
-        }
-
-        #navbar.col span:first-of-type{
-            margin-top: 0px;
-        }
-
-        #navbar.col span.hide{
-            transform: scaleY(0);
-            /*color: rgba(0, 0, 0, 0);*/
-            margin: 0px;
-            padding: 0px;
-            height: 0px;
-        }
-
-        #navbar.col span#nav_bar_collapse{
-            display: block;
-            width: fit-content;
-        }
-
-        #navbar.col span#nav_bar_collapse.active{
-            margin-top : 20px;
-        }
-
-        #title_container {
-            background-color: white;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-            width: fit-content;
-            padding: 20px 20px 5px 20px;
-        }
-
-        #title_container hr {
-            width: 100%;
-            min-width: 40vw;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="navbar">
-    </div>
     <div id="title_container">
         <h1 id="title">Portfólio</h1>
         <h3>Luiz Miguel dos Santos Gonçalves</h3>
-        <hr>
+    </div>
+    <div id="navbar">
     </div>
     <div id="content">
+        <div id="image_container">
+            <img src="person.png" alt="imagem" id="foto">
+            <h3>"Cogito ergo sum"</h3>
+        </div>
+
+        <br><br>
+
+        <h3 style="text-align: center;">Anseio Profissional</h3>
+        <p style="text-align:justify; text-indent: 20px;">
+            Sint magna veniam elit aliquip dolore excepteur. 
+            Nisi ullamco aliquip sit ad aliquip aute ad occaecat laborum sit. Voluptate cillum sint voluptate nulla laborum. 
+            Do tempor laborum enim in do nulla quis. Ut quis veniam nisi aliqua ea exercitation laborum culpa id.
+            Cupidatat veniam irure consectetur fugiat consequat elit enim non dolore quis ad laboris. 
+            Mollit fugiat dolore esse irure qui non excepteur nostrud labore dolore est ea est mollit.
+        </p>
+
         <h3>Principais conhecimentos: </h3>
         <ul>
             <li>
@@ -136,107 +49,7 @@
             </li>
         </ul>
     </div>
-    <div id="hide_trash"></div>
-    <script>
-        var nav_bar = document.getElementById("navbar")
-        var nav_bar_state = 'row'
-
-        function resize_nav_bar(){
-            nav_bar.classList.remove('col')
-            nav_bar.classList.add("row")
-        
-            if(nav_bar.offsetHeight > max_height){
-                
-                nav_bar.classList.remove('row')
-                nav_bar.classList.add("col")
-                
-                let texts = nav_bar.children
-                for (let i=0; i<texts.length; i++){
-                    if (texts[i].id == 'nav_bar_collapse'){
-                        continue;
-                    }
-                    texts[i].style.transitionDuration = "0s"
-                    
-                }
-
-                setTimeout(()=>{
-                    let texts = nav_bar.children
-                    for (let i=0; i<texts.length; i++){
-                        if (texts[i].id == 'nav_bar_collapse'){
-                            continue;
-                        }
-                        texts[i].style.transitionDuration = "1s"
-                    }
-                }, 10)
-
-                if(nav_bar_state==='row'){
-                    hide_all(true)
-                }
-                
-                nav_bar_state = 'col'
-                
-                return
-            } 
-            if(nav_bar_state==='col'){
-                collapse.classList.remove('active')
-                hide_all(false)
-            }
-            
-            nav_bar_state = 'row'
-            
-        }
-
-        window.addEventListener('resize', function(){
-            
-            resize_nav_bar()
-            
-            
-        })
-
-        function hide_all(hide){
-            let texts = nav_bar.children
-            if(texts[0].classList.contains("hide") && hide) return;
-                for (let i=0; i<texts.length; i++){
-                    if (texts[i].id == 'nav_bar_collapse'){
-                        continue;
-                    }
-                    if(hide){
-                        texts[i].classList.add("hide")
-                    }
-                    else{
-                        texts[i].classList.remove("hide")
-                    }
-                }
-        }
-        for(i=0;i<5; i++){
-            let new_s = document.createElement('span')
-            new_s.innerText = `Texto ${i}`
-            nav_bar.appendChild(new_s)
-        }
-
-        var collapse = document.createElement('span')
-        collapse.innerText = `Collapse`
-        collapse.id = "nav_bar_collapse"
-        collapse.addEventListener('click', ()=>{
-            hide_all(collapse.classList.contains('active'))
-            if(collapse.classList.contains('active')){
-                collapse.classList.remove('active')
-                return
-            }
-            collapse.classList.add('active')
-        })
-        nav_bar.appendChild(collapse)
-
-        nav_bar.classList.add("max")
-        nav_bar.classList.add("row")
-
-        var max_height = nav_bar.offsetHeight + 1 
-        console.log(max_height)
-
-        nav_bar.classList.remove("max")
-
-        resize_nav_bar()
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
