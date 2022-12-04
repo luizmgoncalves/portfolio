@@ -1,12 +1,17 @@
 body {
     margin: 0px;
+    background: linear-gradient(rgb(150, 150, 150), rgb(255, 255, 255));
 }
+
+
+
+/*#########  BARRA DE NAVEGAÇÃO   #########*/
 
 #navbar {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(199, 199, 199);
     box-sizing: border-box;
     padding: 10px;
 }
@@ -88,6 +93,10 @@ body {
     margin-top: 20px;
 }
 
+
+/*#########  BARRA DE NAVEGAÇÃO   #########*/
+
+
 #title_container {
     background-color: rgb(0, 0, 0);
     color: white;
@@ -100,12 +109,12 @@ body {
 }
 
 #title_container h1 {
-    font-family:'Copperplate Gothic Light';
+    font-family:ZenDots-Regular;
     font-size:xx-large;
 }
 
 #title_container h3 {
-    font-family:'papyrus';
+    font-family: RobotoCondensed-Regular;
 }
 
 
@@ -126,12 +135,41 @@ body {
     display: flex;
     max-width:800px;
     margin: auto;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 
 #image_container h3{
     margin:auto;
-    min-width: max-content;
+    width: fit-content;
     padding: 20px;
+    font-family: RobotoCondensed-Regular;
 }
+
+.subtitle{
+    text-align: center;
+    font-family: ZenDots-Regular;
+}
+
+.text{
+    text-align:justify; 
+    font-family: RobotoCondensed-Regular;
+    text-indent: 20px; 
+    width: 80%; 
+    margin:auto;
+}
+
+@font-face {
+    font-family: ZenDots-Regular;
+    src: url(ZenDots-Regular.ttf);
+  }
+
+  @font-face {
+    font-family: RobotoCondensed-Regular;
+    src: url(RobotoCondensed-Regular.ttf);
+  }
+  
+
+  a{
+    color: blue;
+  }
