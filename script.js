@@ -27,6 +27,7 @@ function resize_nav_bar() {
                 }
                 texts[i].style.transitionDuration = "1s"
             }
+            
         }, 10)
 
         if (nav_bar_state === 'row') {
@@ -38,6 +39,13 @@ function resize_nav_bar() {
         return
     }
     if (nav_bar_state === 'col') {
+        let texts = nav_bar.children
+            for (let i = 0; i < texts.length; i++) {
+                if (texts[i].id == 'nav_bar_collapse') {
+                    continue;
+                }
+                texts[i].style.transitionDuration = ""
+            }
         collapse.classList.remove('active')
         hide_all(false)
     }
@@ -68,13 +76,16 @@ function hide_all(hide) {
         }
     }
 }
+
+// Adding divs
+
 for (i = 0; i < 5; i++) {
-    let new_s = document.createElement('span')
+    let new_s = document.createElement('div')
     new_s.innerText = `Texto ${i}`
     nav_bar.appendChild(new_s)
 }
 
-var collapse = document.createElement('span')
+var collapse = document.createElement('div')
 collapse.innerText = `Collapse`
 collapse.id = "nav_bar_collapse"
 collapse.addEventListener('click', () => {

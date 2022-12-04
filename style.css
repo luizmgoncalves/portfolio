@@ -16,7 +16,7 @@ body {
     padding: 10px;
 }
 
-#navbar span {
+#navbar div {
     padding: 7px 40px;
     border-radius: 2px;
     width: fit-content;
@@ -26,12 +26,12 @@ body {
     text-align: center;
 }
 
-#navbar span#nav_bar_collapse {
+#navbar div#nav_bar_collapse {
     margin-top: 0px;
     width: fit-content;
 }
 
-#navbar span:hover {
+#navbar div:hover {
     color: rgb(110, 110, 110);
 }
 
@@ -43,16 +43,16 @@ body {
     flex-direction: row;
 }
 
-#navbar.row span {
+#navbar.row div {
     margin-left: 20px;
     width: fit-content;
 }
 
-#navbar.row span:first-of-type {
+#navbar.row div:first-of-type {
     margin-left: 0px;
 }
 
-#navbar.row span#nav_bar_collapse {
+#navbar.row div#nav_bar_collapse {
     display: none;
 }
 
@@ -63,7 +63,7 @@ body {
 
 }
 
-#navbar.col span {
+#navbar.col div {
     margin: 20px 0px 0px 0px;
     width: 100%;
     transform: scaleY(1);
@@ -72,11 +72,11 @@ body {
     transition-duration: 1s;
 }
 
-#navbar.col span:first-of-type {
+#navbar.col div:first-of-type {
     margin-top: 0px;
 }
 
-#navbar.col span.hide {
+#navbar.col div.hide {
     transform: scaleY(0);
     /*color: rgba(0, 0, 0, 0);*/
     margin: 0px;
@@ -84,12 +84,12 @@ body {
     height: 0px;
 }
 
-#navbar.col span#nav_bar_collapse {
+#navbar.col div#nav_bar_collapse {
     display: block;
     width: fit-content;
 }
 
-#navbar.col span#nav_bar_collapse.active {
+#navbar.col div#nav_bar_collapse.active {
     margin-top: 20px;
 }
 
